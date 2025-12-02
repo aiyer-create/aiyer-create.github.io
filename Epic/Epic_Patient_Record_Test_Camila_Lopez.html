@@ -96,32 +96,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             .then(data => config.domain = !data.domain ? config.domain : data.domain)
             .catch(error => console.warn('Failed to retrieve override domain, will continue using ', config.domain, error))
             .finally(() => loadChat());
-			
-        function getEmailFromDivClass(){
-		// To find the first email input within a div with a specific class
-		const emailInput = document.querySelector('div.values__value input[type="Email"]');
-
-		// To find all email inputs within divs with a specific class
-		const emailInputs = document.querySelectorAll('div.values__value input[type="Email"]');
-
-		// Example usage:
-		if (emailInput) {
-		console.log("Found email input:", emailInput.value);
-		return emailInput;
-		}
-
-		emailInputs.forEach(input => {
-		console.log("Found email input:", input.value);
-		return emailInputs;
-		});
-		
-		// Call the function
-	const emailAddress = getEmailFromDivClass();
-	(function (chatApp) {
-// set variables
-	chatApp.setVariables({"$emailAddress": emailAddress})
-	});
-	
+				
         function loadChat() {
             var se = document.createElement("script");
             se.type = "text/javascript";
@@ -143,6 +118,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var os = document.getElementsByTagName("script")[0];
             os.parentNode.insertBefore(se, os);
         }
+		
+		function getEmailFromDivClass(){
+		// To find the first email input within a div with a specific class
+		const emailInput = document.querySelector('div.values__value input[type="Email"]');
+
+		// To find all email inputs within divs with a specific class
+		const emailInputs = document.querySelectorAll('div.values__value input[type="Email"]');
+
+		// Example usage:
+		if (emailInput) {
+		console.log("Found email input:", emailInput.value);
+		return emailInput;
+		}
+
+		emailInputs.forEach(input => {
+		console.log("Found email input:", input.value);
+		return emailInputs;
+		})
+		
+		// Call the function
+	const emailAddress = getEmailFromDivClass();
+	(function (chatApp) {
+// set variables
+	chatApp.setVariables({"$emailAddress": emailAddress})
+	})
+	
     })();
     </script>
 
