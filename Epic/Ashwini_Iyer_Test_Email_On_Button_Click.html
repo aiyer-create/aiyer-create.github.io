@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>8x8 Chat with Pre-populated Email</title>
+</head>
+<body>
+  <!-- Example form -->
+  <form id="myContactForm">
+    <label>
+      Email:
+      <input type="email" id="emailField" name="email" value="" />
+    </label>
+    <button type="button" id="startChat"><div id="__8x8-chat-button-container-script_1753400146692f26fc24a112.04838623">Chat Now</div></button>
+  </form>
+    <!-- This script will not interfere with the button layout, you just need to include it in the same page. It must also be within the <body> section of the page, preferably just before the ending tag. -->
+    <script type="text/javascript">
+    (function(c, f, ef){
+        var typeofC = Object.prototype.toString.call(c);
+        var props = (typeofC === '[object Object]' && c) || {};
+        var cb = f || (typeofC === '[object Function]' && c);
+        var config = {
+            scriptUuid: "script_1753400146692f26fc24a112.04838623",
+            tenant: "aGVhbHRoZWhyZGVtb3Rlc3QwMQ",
+            channelName: "Helpdesk-Email",
+            channelUuid: "nMuaHs48QCyxS1xcXw-1rA",
+            domain: "https://vcc-na6.8x8.com",
+            buttonContainerId: "__8x8-chat-button-container-script_1753400146692f26fc24a112.04838623",
+            align: "right",
+        };
+
+        var url = new URL("https://cloud8-cc-geo.8x8.com/vcc-chat-channels/public/webchat/discovery");
+        var params = { domain: config.domain, tenant: config.tenant, channelUuid: config.channelUuid };
+        url.search = new URLSearchParams(params).toString();
+        fetch(url)
+            .then(response => response.json())
+            .then(data => config.domain = !data.domain ? config.domain : data.domain)
+            .catch(error => console.warn('Failed to retrieve override domain, will continue using ', config.domain, error))
+            .finally(() => loadChat());
+
+        function loadChat() {
+            var se = document.createElement("script");
+            se.type = "text/javascript";
+            se.async = true;
+            se.src = props.loaderURL || (config.domain + "/CHAT/common/js/chatv3.js");
+            Object.keys(config).forEach(function (k) { se.dataset[k] = config[k] });
+            Object.keys(props).forEach(function (k) { se.dataset[k] = props[k] });
+            function handleInitEvent(e) {
+                var initFn = e.detail.init;
+                initFn(config, cb);
+                se.removeEventListener('init', handleInitEvent)
+            }
+            function handleErrorEvent(e) {
+                ef && ef(e);
+                se.removeEventListener('customerror', handleErrorEvent);
+            }
+            se.addEventListener('init', handleInitEvent);
+            se.addEventListener('customerror', handleErrorEvent);
+            var os = document.getElementsByTagName("script")[0];
+            os.parentNode.insertBefore(se, os);
+        }
+    })(function(chatApp) {
+      // Called when 8x8 chat is ready — but we won’t set variables yet.
+    });
+
+    // Later: when user clicks “Start Chat”, read email field and set variable.
+    document.getElementById('startChat').addEventListener('click', function() {
+      var email = document.getElementById('emailField').value;
+      if (email) {
+        // pass email into 8x8
+        window.chatApp && window.chatApp.setVariables({
+          // any custom values
+          "_someCustomFlag": "YES",
+          // set the CRM email address variable:
+          "$emailAddress": email
+        });
+      }
+      // optionally: open the chat window (if not auto opened by button)
+    });
+    </script>
+</body>
+</html>
