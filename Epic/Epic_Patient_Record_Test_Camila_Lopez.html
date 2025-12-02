@@ -131,25 +131,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		return emailInput;
 		})
 		
-		let emailAddress = getEmailFromDivClass();
+		const emailAddress = getEmailFromDivClass();
 		console.log("Found emailAddress:", emailAddress.value);
 		// Call the function
-		let keyVariable = "$emailAddress";
-		let valueVariable = emailAddress;
-
-		let userProfile = {
-		[keyVariable]: valueVariable,
-		};
-	    console.log(userProfile);
 	
 	function (chatApp) {
 	// set variables
 	if(emailAddress)
 	{
 	 
-	 chatApp.setVariables(userProfile)
+	 chatApp.setVariables({"$emailAddress":mailAddress.value);
 	}
-	else {chatApp.setVariables({"$emailAddress": "ashwini.iyer@test.com"})}
+	else {
+	chatApp.setVariables({"$emailAddress": "ashwini.iyer@test.com"});
+	}
   });
     </script>
 
