@@ -124,18 +124,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 initFn(config, cb);
                 se.removeEventListener('init', handleInitEvent)
             }
-			  // --------------------------
-			  // 3. Set email into chatApp
-				// --------------------------
-			setTimeout(() => {
-			const email = getEmailFromDiv();
-			if (email && window.chatApp) {
-			window.chatApp.setVariables({ "$emailAddress": email });
-			console.log("8x8 Email variable set:", email);
-				}
-			  }, 500);
-			}
-			
+					
             function handleErrorEvent(e) {
                 ef && ef(e);
                 se.removeEventListener('customerror', handleErrorEvent);

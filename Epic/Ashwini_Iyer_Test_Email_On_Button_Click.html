@@ -63,19 +63,19 @@
     });
 
     // Later: when user clicks “Start Chat”, read email field and set variable.
-    document.getElementById('startChat').addEventListener('click', function() {
-      var email = document.getElementById('emailField').value;
-      if (email) {
+    //document.getElementById('startChat').addEventListener('click', function() {
+      //var email = document.getElementById('emailField').value;
+      //if (email) {
         // pass email into 8x8
-        window.chatApp && window.chatApp.setVariables({
+        //window.chatApp && window.chatApp.setVariables({
           // any custom values
-          "_someCustomFlag": "YES",
+          //"_someCustomFlag": "YES",
           // set the CRM email address variable:
-          "$emailAddress": email
-        });
-      }
+          //"$emailAddress": email
+        //});
+      //}
       // optionally: open the chat window (if not auto opened by button)
-    });
+    //}	);
     </script>
 </body>
 </html>
